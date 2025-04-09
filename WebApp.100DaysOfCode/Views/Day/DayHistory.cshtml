@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Histórico";
+}
+
+<h2 class="text-3xl font-bold text-center text-orange-500">Histórico de Dias Registrados</h2>
+
+<div class="space-y-4">
+
+    <div class="bg-white shadow rounded-xl p-4 space-y-2">
+        <div class="flex justify-between items-center">
+            <p class="text-sm text-gray-500">📅 08/04/2025</p>
+            <span class="text-xs text-gray-400">Duração: 1h30min</span>
+        </div>
+        <p class="font-medium">Estudei sobre Angular e criei um componente de formulário reativo.</p>
+        <div class="flex flex-wrap gap-2 mt-2">
+            <span class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded-full">#Angular</span>
+            <span class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded-full">#Formulários</span>
+        </div>
+    </div>
+
+    <div class="bg-white shadow rounded-xl p-4 space-y-2">
+        <div class="flex justify-between items-center">
+            <p class="text-sm text-gray-500">📅 07/04/2025</p>
+            <span class="text-xs text-gray-400">Duração: 2h</span>
+        </div>
+        <p class="font-medium">Pratiquei SQL avançado com CTEs e subqueries.</p>
+        <div class="flex flex-wrap gap-2 mt-2">
+            <span class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded-full">#SQL</span>
+            <span class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded-full">#CTE</span>
+        </div>
+    </div>
+
+    <div class="bg-white shadow rounded-xl p-4 space-y-2">
+        <div class="flex justify-between items-center">
+            <p class="text-sm text-gray-500">📅 06/04/2025</p>
+            <span class="text-xs text-gray-400">Duração: 45min</span>
+        </div>
+        <p class="font-medium">Li documentação do TailwindCSS e ajustei responsividade do layout.</p>
+        <div class="flex flex-wrap gap-2 mt-2">
+            <span class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded-full">#Tailwind</span>
+            <span class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded-full">#Responsividade</span>
+        </div>
+    </div>
+
+</div>
+
+<div class="text-center text-sm">
+    <a asp-controller="Dashboard" asp-action="Index" class="text-orange-500 hover:underline">Voltar para o dashboard</a>
+</div>

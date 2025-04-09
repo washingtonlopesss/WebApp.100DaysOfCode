@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Novo Dia";
+}
+
+<h2 class="text-3xl font-bold text-center text-orange-500">Registrar novo dia</h2>
+
+<form asp-controller="Day" asp-action="DayRegister" method="post" class="space-y-4">
+    @Html.AntiForgeryToken()
+
+    <div>
+        <label for="data" class="block text-sm font-medium text-gray-700">Data</label>
+        <input type="date" id="data" name="data" class="mt-1 w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 text-sm" required>
+    </div>
+
+    <div>
+        <label for="resumo" class="block text-sm font-medium text-gray-700">Resumo do que foi estudado</label>
+        <textarea id="resumo" name="resumo" rows="5" placeholder="Descreva brevemente o que você estudou ou praticou hoje..." class="mt-1 w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 text-sm resize-none" required></textarea>
+    </div>
+
+    <div>
+        <label for="tempo" class="block text-sm font-medium text-gray-700">Tempo dedicado (opcional)</label>
+        <input type="text" id="tempo" name="tempo" placeholder="Ex: 1h30min" class="mt-1 w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 text-sm">
+    </div>
+
+    <div>
+        <label for="tag-input" class="block text-sm font-medium text-gray-700">Tags</label>
+        <div class="flex flex-wrap gap-2 mt-1" id="tag-container"></div>
+        <input type="text" id="tag-input" placeholder="Digite uma tag e pressione Enter" class="mt-2 w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 text-sm" />
+    </div>
+
+    <button type="submit" class="w-full bg-orange-500 text-white font-semibold py-2 rounded-lg hover:bg-orange-600 transition text-sm">
+        Salvar dia
+    </button>
+</form>
+
+
+<div class="text-center text-sm">
+    <a asp-controller="Dashboard" asp-action="Index" class="text-orange-500 hover:underline">Voltar para o dashboard</a>
+</div>

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\WebApp.100DaysOfCode.props" />
+</Project>
