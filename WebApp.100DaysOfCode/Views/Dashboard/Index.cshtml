@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<WebApp._100DaysOfCode.Models.Commit>
+
+@{
     ViewData["Title"] = "Dashboard";
 }
 
@@ -6,12 +8,12 @@
     <div class="flex items-center justify-between">
         <div>
             <p class="text-xl font-semibold">Progresso</p>
-            <p class="text-sm text-gray-500">23 de 100 dias concluídos</p>
+            <p class="text-sm text-gray-500">@ViewData["DaysOn"] de 100 dias concluídos</p>
         </div>
         <span class="text-orange-500 text-3xl">🔥</span>
     </div>
     <div class="w-full h-4 bg-gray-200 rounded mt-4 overflow-hidden">
-        <div class="bg-orange-500 h-4 rounded" style="width: 23%"></div>
+        <div class="bg-orange-500 h-4 rounded" style="width: @ViewData["DaysOn"]%"></div>
     </div>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -29,17 +31,12 @@
 <div class="bg-white rounded-2xl shadow p-4">
     <h2 class="text-xl font-semibold mb-4">Últimos Commits no GitHub</h2>
     <ul class="space-y-3">
-        <li class="border-l-4 border-blue-500 pl-3">
-            <p class="text-sm font-medium text-gray-800">feat: adicionar componente de progresso</p>
-            <p class="text-xs text-gray-500">2025-04-08 01:34:27 · repositório: <span class="font-mono">100-days-code</span></p>
-        </li>
-        <li class="border-l-4 border-green-500 pl-3">
-            <p class="text-sm font-medium text-gray-800">fix: corrigir bug no historico</p>
-            <p class="text-xs text-gray-500">2025-04-07 22:34:27 · repositório: <span class="font-mono">100-days-code</span></p>
-        </li>
-        <li class="border-l-4 border-yellow-500 pl-3">
-            <p class="text-sm font-medium text-gray-800">docs: atualizar README</p>
-            <p class="text-xs text-gray-500">2025-04-06 19:24:27 · repositório: <span class="font-mono">100-days-code</span></p>
-        </li>
+        @foreach (var item in Model)
+        {
+            <li class="border-l-4 border-yellow-500 pl-3">
+                <p class="text-sm font-medium text-gray-800">@item.Title</p>
+                <p class="text-xs text-gray-500">@item.Data · @item.RepositoryName: <span class="font-mono">100-days-code</span></p>
+            </li>
+        }
     </ul>
 </div>
