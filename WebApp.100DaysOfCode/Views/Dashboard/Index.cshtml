@@ -28,15 +28,24 @@
         <p class="text-sm text-gray-500">Veja os dias já registrados</p>
     </a>
 </div>
-<div class="bg-white rounded-2xl shadow p-4">
-    <h2 class="text-xl font-semibold mb-4">Últimos Commits no GitHub</h2>
-    <ul class="space-y-3">
-        @foreach (var item in Model)
-        {
-            <li class="border-l-4 border-yellow-500 pl-3">
-                <p class="text-sm font-medium text-gray-800">@item.Title</p>
-                <p class="text-xs text-gray-500">@item.Data · @item.RepositoryName: <span class="font-mono">100-days-code</span></p>
-            </li>
-        }
-    </ul>
-</div>
+@if (Model.Count > 0)
+{
+    <div class="bg-white rounded-2xl shadow p-4">
+        <h2 class="text-xl font-semibold mb-4">Últimos Commits no GitHub</h2>
+        <ul class="space-y-3">
+            @foreach (var item in Model)
+            {
+                <li class="border-l-4 border-yellow-500 pl-3">
+                    <p class="text-sm font-medium text-gray-800">@item.Title</p>
+                    <p class="text-xs text-gray-500">@item.Data · @item.RepositoryName: <span class="font-mono">100-days-code</span></p>
+                </li>
+            }
+        </ul>
+    </div>
+}
+else
+{
+    <div class="text-center text-sm">
+        <p class="text-orange-500 hover:underline">Sem commits por hora!</p>
+    </div>
+}

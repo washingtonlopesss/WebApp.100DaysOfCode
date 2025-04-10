@@ -15,42 +15,50 @@ public class GitHubAPI
 
         var reposResponse = _httpClient.GetAsync($"https://api.github.com/users/{_username}/repos?per_page=100").Result;
         var reposJson = reposResponse.Content.ReadAsStringAsync().Result;
-        var repos = JsonSerializer.Deserialize<List<Repo>>(reposJson);
-
-        if (repos == null) return [];
-
-        var commitsFinal = new List<Commit>();
-
-        foreach (var repo in repos)
+        try
         {
-            var commitsResponse = _httpClient.GetAsync(
-                $"https://api.github.com/repos/{repo.owner.login}/{repo.name}/commits?author={_username}&per_page=10"
-            ).Result;
+            List<Repo> repos = JsonSerializer.Deserialize<List<Repo>>(reposJson);
 
-            if (!commitsResponse.IsSuccessStatusCode) continue;
+            if (repos == null) return [];
 
-            var commitsJson = commitsResponse.Content.ReadAsStringAsync().Result;
-            var commits = JsonSerializer.Deserialize<List<CommitResponse>>(commitsJson);
+            var commitsFinal = new List<Commit>();
 
-            if (commits == null) continue;
-
-            foreach (var c in commits)
+            foreach (var repo in repos)
             {
-                commitsFinal.Add(new Commit
+                var commitsResponse = _httpClient.GetAsync(
+                    $"https://api.github.com/repos/{repo.owner.login}/{repo.name}/commits?author={_username}&per_page=10"
+                ).Result;
+
+                if (!commitsResponse.IsSuccessStatusCode) continue;
+
+                var commitsJson = commitsResponse.Content.ReadAsStringAsync().Result;
+                var commits = JsonSerializer.Deserialize<List<CommitResponse>>(commitsJson);
+
+                if (commits == null) continue;
+
+                foreach (var c in commits)
                 {
-                    Title = c.commit.message,
-                    Data = DateTime.Parse(c.commit.author.date),
-                    RepositoryName = repo.name,
-                    Url = c.html_url
-                });
+                    commitsFinal.Add(new Commit
+                    {
+                        Title = c.commit.message,
+                        Data = DateTime.Parse(c.commit.author.date),
+                        RepositoryName = repo.name,
+                        Url = c.html_url
+                    });
+                }
+
+                if (commitsFinal.Count >= 15) break;
             }
 
-            if (commitsFinal.Count >= 15) break;
+            return commitsFinal.OrderByDescending(c => c.Data).Take(15).ToList();
         }
-
-        return commitsFinal.OrderByDescending(c => c.Data).Take(15).ToList();
+        catch (JsonException ex)
+        {
+            Console.WriteLine($"Erro ao desserializar JSON: {ex.Message}");
+            Console.WriteLine($"JSON recebido: {reposJson}");
+            return [];
+        }        
     }
-
 
     private class Repo
     {
