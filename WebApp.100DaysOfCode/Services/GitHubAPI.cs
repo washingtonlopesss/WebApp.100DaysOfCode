@@ -6,7 +6,7 @@ namespace WebApp._100DaysOfCode.Services;
 
 public class GitHubAPI
 {
-    private readonly string _username = "lopes0x";
+    private readonly string _username = "washingtonlopesss";
 
     public List<Commit> SearchLatestCommits()
     {

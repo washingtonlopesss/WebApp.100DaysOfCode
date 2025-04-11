@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebApp.100DaysOfCode")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4c43528582eedfa4e8aac04b6e54a160062d4de4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+babb6499f933566d90c7981d383890be806e6078")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebApp.100DaysOfCode")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebApp.100DaysOfCode")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
